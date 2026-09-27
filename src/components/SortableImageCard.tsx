@@ -74,7 +74,7 @@ export function SortableImageCard({
           type="button"
           {...attributes}
           {...listeners}
-          title="Tieni premuto e trascina per riordinare"
+          title="Hold & drag to reorder"
           className="flex h-10 w-8 cursor-grab active:cursor-grabbing items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200 touch-none shrink-0"
         >
           <GripVertical className="h-5 w-5" />
@@ -118,7 +118,7 @@ export function SortableImageCard({
               <>
                 <span>•</span>
                 <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  {item.rotation}°
+                  Rotated {item.rotation}°
                 </span>
               </>
             )}
@@ -132,7 +132,7 @@ export function SortableImageCard({
             type="button"
             onClick={onMoveBackward}
             disabled={isFirst}
-            title="Sposta su"
+            title="Move Up"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <ArrowUp className="h-4 w-4" />
@@ -143,7 +143,7 @@ export function SortableImageCard({
             type="button"
             onClick={onMoveForward}
             disabled={isLast}
-            title="Sposta giù"
+            title="Move Down"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <ArrowDown className="h-4 w-4" />
@@ -153,7 +153,7 @@ export function SortableImageCard({
           <button
             type="button"
             onClick={onRotate}
-            title="Ruota di 90°"
+            title="Rotate 90° Clockwise"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <RotateCw className="h-4 w-4" />
@@ -163,7 +163,7 @@ export function SortableImageCard({
           <button
             type="button"
             onClick={onDelete}
-            title="Rimuovi pagina"
+            title="Remove page"
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-500 transition-all hover:bg-rose-50 hover:border-rose-300 hover:text-rose-600 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-400 dark:hover:bg-rose-950/40 dark:hover:text-rose-400"
           >
             <Trash2 className="h-4 w-4" />
@@ -173,7 +173,7 @@ export function SortableImageCard({
     );
   }
 
-  // Grid Mode (Default & Ideal for Visual Reordering)
+  // Grid Mode (Default)
   return (
     <div
       ref={setNodeRef}
@@ -187,16 +187,16 @@ export function SortableImageCard({
       {/* Top Header Card: Page Badge + Drag Handle */}
       <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/70 px-3 py-2 dark:border-slate-800/80 dark:bg-slate-800/50">
         <span className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-2 py-0.5 text-xs font-bold text-white shadow-xs">
-          <span>Pagina</span>
+          <span>Page</span>
           <span className="text-white font-extrabold">{index + 1}</span>
         </span>
 
-        {/* Drag Handle with touch-none so scroll is not blocked on other parts */}
+        {/* Drag Handle with touch-none */}
         <button
           type="button"
           {...attributes}
           {...listeners}
-          title="Trascina per spostare"
+          title="Drag to reorder"
           className="flex h-7 w-7 cursor-grab active:cursor-grabbing items-center justify-center rounded-lg text-slate-400 hover:bg-slate-200/60 hover:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-slate-200 touch-none"
         >
           <GripVertical className="h-4 w-4" />
@@ -219,7 +219,7 @@ export function SortableImageCard({
         {/* Hover zoom pill */}
         <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-slate-900/70 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur-xs opacity-0 transition-opacity group-hover:opacity-100">
           <Eye className="h-3 w-3" />
-          Ingrandisci
+          Zoom
         </span>
 
         {/* Rotation indicator pill */}
@@ -247,7 +247,7 @@ export function SortableImageCard({
           type="button"
           onClick={onMoveBackward}
           disabled={isFirst}
-          title="Sposta prima (←)"
+          title="Move earlier (←)"
           className="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-xs transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 active:scale-95"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -258,7 +258,7 @@ export function SortableImageCard({
           type="button"
           onClick={onMoveForward}
           disabled={isLast}
-          title="Sposta dopo (→)"
+          title="Move later (→)"
           className="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-xs transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 disabled:opacity-30 disabled:cursor-not-allowed dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 active:scale-95"
         >
           <ArrowRight className="h-4 w-4" />
@@ -268,7 +268,7 @@ export function SortableImageCard({
         <button
           type="button"
           onClick={onRotate}
-          title="Ruota di 90° in senso orario"
+          title="Rotate 90° clockwise"
           className="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-xs transition-all hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 active:scale-95"
         >
           <RotateCw className="h-4 w-4" />
@@ -278,7 +278,7 @@ export function SortableImageCard({
         <button
           type="button"
           onClick={onDelete}
-          title="Elimina questa immagine"
+          title="Delete page"
           className="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-rose-500 shadow-xs transition-all hover:bg-rose-50 hover:border-rose-300 hover:text-rose-600 dark:border-slate-800 dark:bg-slate-800 dark:text-rose-400 dark:hover:bg-rose-950/40 active:scale-95"
         >
           <Trash2 className="h-4 w-4" />

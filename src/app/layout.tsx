@@ -13,16 +13,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PNG to PDF Pro | Unisci Immagini PNG in PDF ad Alta Risoluzione",
+  title: "Fixpu PNG2PDF | Fast, Lossless PNG to PDF Converter",
   description:
-    "Web app moderna e veloce per combinare più immagini PNG in un unico documento PDF. Riordino facile con drag-and-drop o pulsanti freccia, 100% client-side nel tuo browser.",
+    "Combine multiple PNG images into a single high-quality PDF in your browser. Reorder pages with touch-friendly drag-and-drop or tactile arrow buttons. 100% private, client-side, zero compression.",
   keywords: [
+    "fixpu png2pdf",
     "png to pdf",
-    "unisci png in pdf",
-    "convertitore png pdf",
-    "combina immagini pdf",
-    "pdf client side",
-    "alta risoluzione",
+    "merge png to pdf",
+    "combine png images",
+    "convert png to pdf high quality",
+    "client-side pdf converter",
+    "lossless pdf merge",
   ],
 };
 
@@ -40,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="it"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">

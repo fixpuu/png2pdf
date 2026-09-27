@@ -75,7 +75,7 @@ async function getImageData(item: ImageItem): Promise<{
       const ctx = canvas.getContext("2d");
       if (!ctx) {
         URL.revokeObjectURL(url);
-        return reject(new Error("Impossibile inizializzare il contesto Canvas 2D"));
+        return reject(new Error("Unable to initialize 2D canvas context"));
       }
 
       ctx.save();
@@ -88,7 +88,7 @@ async function getImageData(item: ImageItem): Promise<{
 
       canvas.toBlob((blob) => {
         if (!blob) {
-          return reject(new Error("Errore durante l'esportazione del Canvas"));
+          return reject(new Error("Canvas export failed"));
         }
         blob
           .arrayBuffer()
@@ -104,9 +104,9 @@ async function getImageData(item: ImageItem): Promise<{
       }, "image/png");
     };
 
-    img.onerror = (e) => {
+    img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error("Errore durante il caricamento dell'immagine nel canvas"));
+      reject(new Error("Failed to load image in canvas"));
     };
 
     img.src = url;
@@ -122,7 +122,7 @@ export async function generatePdf(
   onProgress?: (data: ProgressCallbackData) => void
 ): Promise<{ blob: Blob; fileName: string }> {
   if (images.length === 0) {
-    throw new Error("Nessuna immagine da convertire");
+    throw new Error("No images to convert");
   }
 
   const pdfDoc = await PDFDocument.create();
@@ -136,7 +136,7 @@ export async function generatePdf(
         current: i + 1,
         total,
         percentage: Math.round(((i + 0.3) / total) * 90),
-        statusText: `Elaborazione pagina ${i + 1} di ${total}: "${item.name}"...`,
+        statusText: `Processing page ${i + 1} of ${total}: "${item.name}"...`,
       });
     }
 
@@ -147,8 +147,7 @@ export async function generatePdf(
       try {
         embeddedImage = await pdfDoc.embedPng(bytes);
       } catch (err) {
-        // Fallback in case of exotic PNG chunks
-        console.warn("embedPng ha fallito, tentativo con ricodifica canvas...", err);
+        console.warn("embedPng failed, fallback to canvas...", err);
         const fallback = await renderToStandardPng(item.file);
         embeddedImage = await pdfDoc.embedPng(fallback);
       }
@@ -156,7 +155,7 @@ export async function generatePdf(
       try {
         embeddedImage = await pdfDoc.embedJpg(bytes);
       } catch (err) {
-        console.warn("embedJpg ha fallito, tentativo con ricodifica canvas...", err);
+        console.warn("embedJpg failed, fallback to canvas...", err);
         const fallback = await renderToStandardPng(item.file);
         embeddedImage = await pdfDoc.embedPng(fallback);
       }
@@ -224,7 +223,7 @@ export async function generatePdf(
         current: i + 1,
         total,
         percentage: Math.round(((i + 1) / total) * 90),
-        statusText: `Pagina ${i + 1} di ${total} pronta.`,
+        statusText: `Page ${i + 1} of ${total} ready.`,
       });
     }
   }
@@ -234,20 +233,20 @@ export async function generatePdf(
       current: total,
       total,
       percentage: 95,
-      statusText: "Compilazione del documento PDF in corso...",
+      statusText: "Finalizing PDF file...",
     });
   }
 
   const pdfBytes = await pdfDoc.save();
   const blob = new Blob([pdfBytes as unknown as BlobPart], { type: "application/pdf" });
-  const finalFileName = sanitizeFileName(options.fileName || "documento.pdf");
+  const finalFileName = sanitizeFileName(options.fileName || "merged_document.pdf");
 
   if (onProgress) {
     onProgress({
       current: total,
       total,
       percentage: 100,
-      statusText: "PDF generato con successo!",
+      statusText: "PDF generated successfully!",
     });
   }
 
@@ -268,18 +267,18 @@ function renderToStandardPng(file: File): Promise<ArrayBuffer> {
       const ctx = canvas.getContext("2d");
       if (!ctx) {
         URL.revokeObjectURL(url);
-        return reject(new Error("Canvas context non disponibile"));
+        return reject(new Error("Canvas context unavailable"));
       }
       ctx.drawImage(img, 0, 0);
       URL.revokeObjectURL(url);
       canvas.toBlob((blob) => {
-        if (!blob) return reject(new Error("Canvas toBlob fallito"));
+        if (!blob) return reject(new Error("Canvas toBlob failed"));
         blob.arrayBuffer().then(resolve).catch(reject);
       }, "image/png");
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error("Impossibile caricare l'immagine"));
+      reject(new Error("Failed to load image"));
     };
     img.src = url;
   });

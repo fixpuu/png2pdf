@@ -47,7 +47,6 @@ export function FileUploader({ onFilesSelected, compact = false }: FileUploaderP
       if (files.length > 0) {
         onFilesSelected(files);
       }
-      // Reset input value so re-selecting same file triggers change
       e.target.value = "";
     }
   };
@@ -69,7 +68,7 @@ export function FileUploader({ onFilesSelected, compact = false }: FileUploaderP
           className="inline-flex items-center gap-1.5 rounded-xl border border-indigo-200 bg-indigo-50/80 px-3.5 py-2 text-xs font-semibold text-indigo-700 shadow-xs transition-all hover:bg-indigo-100 hover:border-indigo-300 active:scale-95 dark:border-indigo-800/80 dark:bg-indigo-950/40 dark:text-indigo-300 dark:hover:bg-indigo-900/50"
         >
           <Plus className="h-4 w-4" />
-          <span>Aggiungi Altre Immagini</span>
+          <span>Add More Images</span>
         </button>
       </>
     );
@@ -106,30 +105,30 @@ export function FileUploader({ onFilesSelected, compact = false }: FileUploaderP
 
       {/* Main Call to Action */}
       <h3 className="text-lg font-bold text-slate-900 dark:text-white sm:text-xl">
-        Seleziona o trascina qui le tue immagini PNG
+        Select or drag &amp; drop your PNG files here
       </h3>
 
       <p className="mt-1.5 max-w-md text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
-        Tocca per scegliere più file dalla galleria del telefono o dal computer.
-        L&apos;ordine iniziale corrisponde alla tua selezione.
+        Tap to choose multiple files from your phone gallery or desktop.
+        Files retain their exact selected sequence.
       </p>
 
       {/* Mobile-Friendly Big Button */}
       <div className="mt-5">
         <span className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-600/25 transition-all group-hover:bg-indigo-700 group-hover:shadow-indigo-600/35 active:scale-95">
           <ImageIcon className="h-4 w-4" />
-          Scegli File PNG
+          Choose PNG Files
         </span>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[11px] text-slate-400 dark:text-slate-500">
         <span className="rounded-md bg-white/70 px-2 py-0.5 font-medium border border-slate-200 dark:bg-slate-800 dark:border-slate-700">
-          Formati: PNG, JPG, WebP
+          Formats: PNG, JPG, WebP
         </span>
         <span>•</span>
         <span className="flex items-center gap-1">
           <Sparkles className="h-3 w-3 text-amber-500" />
-          Nessun limite di pagine
+          Unlimited Pages &amp; 100% Free
         </span>
       </div>
     </div>

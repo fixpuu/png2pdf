@@ -143,10 +143,10 @@ export function SortableImageList({
           </div>
           <div>
             <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-              {images.length} {images.length === 1 ? "pagina pronta" : "pagine pronte"}
+              {images.length} {images.length === 1 ? "page loaded" : "pages loaded"}
             </h3>
             <p className="text-[11px] text-slate-400">
-              Dimensione totale: {formatBytes(totalBytes)}
+              Total file size: {formatBytes(totalBytes)}
             </p>
           </div>
         </div>
@@ -160,22 +160,22 @@ export function SortableImageList({
           <button
             type="button"
             onClick={handleSortByName}
-            title="Ordina alfabeticamente per nome file"
+            title="Sort alphabetically by file name"
             className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2 text-xs font-medium text-slate-600 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 transition-colors dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <ArrowDownAZ className="h-3.5 w-3.5" />
-            <span className="hidden xs:inline">Nome</span>
+            <span className="hidden xs:inline">Sort A-Z</span>
           </button>
 
           {/* Reverse order */}
           <button
             type="button"
             onClick={handleReverseOrder}
-            title="Inverti l'ordine attuale"
+            title="Reverse current sequence"
             className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2 text-xs font-medium text-slate-600 hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-600 transition-colors dark:border-slate-800 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
           >
             <ArrowUpDown className="h-3.5 w-3.5" />
-            <span className="hidden xs:inline">Inverti</span>
+            <span className="hidden xs:inline">Reverse</span>
           </button>
 
           {/* View Mode Toggle */}
@@ -183,7 +183,7 @@ export function SortableImageList({
             <button
               type="button"
               onClick={() => setViewMode("grid")}
-              title="Vista Griglia"
+              title="Grid View"
               className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
                 viewMode === "grid"
                   ? "bg-white text-indigo-600 shadow-xs dark:bg-slate-700 dark:text-white"
@@ -195,7 +195,7 @@ export function SortableImageList({
             <button
               type="button"
               onClick={() => setViewMode("list")}
-              title="Vista Lista"
+              title="List View"
               className={`flex h-7 w-7 items-center justify-center rounded-lg transition-colors ${
                 viewMode === "list"
                   ? "bg-white text-indigo-600 shadow-xs dark:bg-slate-700 dark:text-white"
@@ -210,11 +210,11 @@ export function SortableImageList({
           <button
             type="button"
             onClick={onClearAll}
-            title="Svuota tutte le pagine"
+            title="Clear all pages"
             className="inline-flex items-center gap-1 rounded-xl border border-rose-200 bg-rose-50/70 px-2.5 py-2 text-xs font-medium text-rose-600 hover:bg-rose-100 transition-colors dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-300"
           >
             <Trash2 className="h-3.5 w-3.5" />
-            <span className="hidden xs:inline">Svuota</span>
+            <span className="hidden xs:inline">Clear</span>
           </button>
         </div>
       </div>
@@ -222,7 +222,7 @@ export function SortableImageList({
       {/* Reordering helper hint */}
       <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
         <span>
-          💡 <strong>Consiglio:</strong> Trascina le card o usa le frecce per riordinare l&apos;esatta sequenza delle pagine nel PDF.
+          💡 <strong>Tip:</strong> Drag cards or use the arrow buttons to define the exact sequence of pages in your PDF.
         </span>
       </div>
 

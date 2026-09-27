@@ -6,6 +6,7 @@ import { FileUploader } from "@/components/FileUploader";
 import { SortableImageList } from "@/components/SortableImageList";
 import { ExportCard } from "@/components/ExportCard";
 import { ImagePreviewModal } from "@/components/ImagePreviewModal";
+import { PromoBanner } from "@/components/PromoBanner";
 import { Footer } from "@/components/Footer";
 import { ImageItem } from "@/types";
 import { createImageItem } from "@/lib/utils";
@@ -32,7 +33,7 @@ export default function Home() {
 
   const handleClearAll = () => {
     if (images.length === 0) return;
-    if (window.confirm("Vuoi davvero rimuovere tutte le immagini caricate?")) {
+    if (window.confirm("Are you sure you want to remove all loaded images?")) {
       images.forEach((img) => URL.revokeObjectURL(img.previewUrl));
       setImages([]);
       setPreviewIndex(null);
@@ -74,44 +75,49 @@ export default function Home() {
       <Navbar />
 
       <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-8 sm:px-6">
+        {/* Top Announcement Bar for zwch.store */}
+        <div className="mb-6">
+          <PromoBanner variant="banner" />
+        </div>
+
         {/* Hero Section */}
         <section className="mb-8 text-center sm:mb-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3.5 py-1 text-xs font-semibold text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200/80 dark:border-indigo-800/60 shadow-xs mb-4">
             <Sparkles className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
-            <span>Conversione Istantanea ad Alta Risoluzione</span>
+            <span>High-Speed Lossless PDF Conversion</span>
           </div>
 
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
-            Unisci immagini{" "}
+            Fixpu{" "}
             <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
-              PNG in un unico PDF
+              PNG2PDF
             </span>
           </h1>
 
           <p className="mx-auto mt-3 max-w-2xl text-sm sm:text-base text-slate-600 dark:text-slate-400">
-            Trascina le pagine o usa i pulsanti freccia per impostare l&apos;ordine
-            perfetto. Nessun limite, nessun upload sul server: 100% privato e veloce
-            sia su smartphone che desktop.
+            Combine multiple PNG images into a single high-quality PDF.
+            Reorder pages with fluid drag-and-drop or tactile arrow buttons.
+            100% private in your browser — zero compression, zero server uploads.
           </p>
         </section>
 
         {/* Dynamic Workspace */}
         {images.length === 0 ? (
-          <div className="mx-auto w-full max-w-2xl">
+          <div className="mx-auto w-full max-w-2xl space-y-8">
             <FileUploader onFilesSelected={handleFilesSelected} />
 
             {/* Quick feature highlights */}
-            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <div className="flex items-center gap-3 rounded-2xl border border-slate-200/60 bg-white/70 p-3.5 shadow-xs dark:border-slate-800 dark:bg-slate-900/60">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-100/70 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">
                   <ArrowUpDown className="h-4 w-4" />
                 </div>
                 <div className="text-left">
                   <h4 className="text-xs font-bold text-slate-900 dark:text-white">
-                    Riordino Intuitivo
+                    Intuitive Reordering
                   </h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Drag-and-drop o pulsanti freccia
+                    Drag &amp; drop or arrow buttons
                   </p>
                 </div>
               </div>
@@ -122,10 +128,10 @@ export default function Home() {
                 </div>
                 <div className="text-left">
                   <h4 className="text-xs font-bold text-slate-900 dark:text-white">
-                    Qualità 100% Originale
+                    100% Lossless Quality
                   </h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Pixel perfetti senza compressione
+                    Original pixel sharpness
                   </p>
                 </div>
               </div>
@@ -136,14 +142,17 @@ export default function Home() {
                 </div>
                 <div className="text-left">
                   <h4 className="text-xs font-bold text-slate-900 dark:text-white">
-                    100% nel tuo Browser
+                    100% Local &amp; Private
                   </h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Nessun file inviato su server
+                    No files ever sent to a server
                   </p>
                 </div>
               </div>
             </div>
+
+            {/* Featured Sponsored Card */}
+            <PromoBanner variant="card" />
           </div>
         ) : (
           <div className="space-y-8 animate-in fade-in duration-300">
